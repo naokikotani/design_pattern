@@ -9,15 +9,19 @@ class BookShelf < Iterable
   end
 
   def append_book(book)
-    books[last] = book
-    last += 1
+    books[@last] = book
+    @last += 1
   end
 
   def iterator
     BookShelfIterator.new(self)
   end
 
+  def length
+    @last
+  end
+
   private
 
-  attr_reader :books, :last
+  attr_reader :books
 end

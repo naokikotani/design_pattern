@@ -7,7 +7,7 @@ class BookShelfIterator < Iterator
   end
 
   def has_next
-    return true if index < book_shelf.last
+    return true if index < book_shelf.length
 
     false
   end
@@ -16,12 +16,12 @@ class BookShelfIterator < Iterator
     raise BookNotFoundError unless has_next
 
     book = book_shelf.get_book_at(index)
-    index += 1
+    @index += 1
 
     book
   end
 
   private
 
-  attr_reader :book_shelfk, index
+  attr_reader :book_shelf, :index
 end
