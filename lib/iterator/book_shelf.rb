@@ -1,16 +1,14 @@
 class BookShelf < Iterable
-  def initialize(max_size)
-    @books = Array.new(max_size)
-    @last = 0
+  def initialize
+    @books = []
   end
 
   def get_book_at(index)
-    books[index]
+    @books[index]
   end
 
   def append_book(book)
-    books[@last] = book
-    @last += 1
+    @books << book
   end
 
   def iterator
@@ -18,7 +16,7 @@ class BookShelf < Iterable
   end
 
   def length
-    @last
+    @books.size
   end
 
   private

@@ -2,7 +2,7 @@ require 'rspec'
 
 RSpec.describe 'Iterator Pattern' do
   it 'iterates through books' do
-    book_shelf = BookShelf.new(3)
+    book_shelf = BookShelf.new
     book_shelf.append_book(Book.new('Book 1'))
     book_shelf.append_book(Book.new('Book 2'))
     book_shelf.append_book(Book.new('Book 3'))
