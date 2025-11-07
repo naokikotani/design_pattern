@@ -10,4 +10,3 @@ RSpec.describe 'Adaptor Pattern' do
     expect(print_strong).to eq('*Hello*')
   end
 end
-
