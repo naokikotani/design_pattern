@@ -1,9 +1,10 @@
 class IdCard < Product
-  attr_reader :owner
+  attr_reader :owner, :serial
 
-  def initialize(owner)
-    puts "#{owner}のカードを作ります。"
+  def initialize(owner, serial)
     @owner = owner
+    @serial = serial
+    puts "#{owner}のカードを作ります。"
   end
 
   def use
@@ -11,6 +12,6 @@ class IdCard < Product
   end
 
   def to_s
-    "[IDCard:#{owner}]"
+    "[IDCard:#{owner}##{serial}]"
   end
 end

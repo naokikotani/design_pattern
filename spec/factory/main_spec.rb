@@ -1,21 +1,26 @@
 require 'rspec'
 
-RSpec.describe 'Factory Method Pattern' do
+RSpec.describe 'Factory Method Pattern with Serial Numbers' do
   let(:factory) { IdCardFactory.new }
 
-  it do
+  it 'カード作成時に通し番号が付き、対応表が更新される' do
     expect {
-      @card3 = factory.create('Hanako Sato')
+      card1 = factory.create('Hiroshi Yuki')
+      card2 = factory.create('Tomura')
     }.to output(<<~EOS).to_stdout
-      Hanako Satoのカードを作ります。
-      [IDCard:Hanako Sato]を登録しました。
+      Hiroshi Yukiのカードを作ります。
+      [IDCard:Hiroshi Yuki#1]を登録しました。
+      Tomuraのカードを作ります。
+      [IDCard:Tomura#2]を登録しました。
     EOS
+
+    expect(factory.owners).to eq({1 => 'Hiroshi Yuki', 2 => 'Tomura'})
   end
 
-  it do
-    card = IdCard.new('Hiroshi Yuki')
+  it 'カードを使うと出力される' do
+    card = IdCard.new('Hanako Sato', 3)
     expect {
       card.use
-    }.to output("[IDCard:Hiroshi Yuki]を使います。\n").to_stdout
+    }.to output("[IDCard:Hanako Sato#3]を使います。\n").to_stdout
   end
 end
