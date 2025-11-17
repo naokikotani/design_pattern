@@ -25,18 +25,18 @@ RSpec.describe Manager do
     it do
       p2 = manager.create('warning box')
       expect { p2.use('Hello, world.') }.to output(<<~TEXT).to_stdout
-        ****************
+        ***************
         *Hello, world.*
-        ****************
+        ***************
       TEXT
     end
 
     it do
       p3 = manager.create('slash box')
       expect { p3.use('Hello, world.') }.to output(<<~TEXT).to_stdout
-        ////////////////
+        ///////////////
         /Hello, world./
-        ////////////////
+        ///////////////
       TEXT
     end
   end
