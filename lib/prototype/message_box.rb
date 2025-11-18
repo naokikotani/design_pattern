@@ -1,4 +1,6 @@
 class MessageBox < Product
+  include Prototype
+
   attr_reader :decochar
 
   def initialize(decochar)
@@ -10,10 +12,6 @@ class MessageBox < Product
     print_line(decolen)
     puts "#{decochar}#{string}#{decochar}"
     print_line(decolen)
-  end
-
-  def create_copy
-    clone
   end
 
   private

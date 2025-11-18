@@ -1,4 +1,6 @@
 class UnderlinePen < Product
+  include Prototype
+
   attr_reader :ulchar
 
   def initialize(ulchar)
@@ -9,9 +11,5 @@ class UnderlinePen < Product
     puts string
     string.length.times { print ulchar }
     puts
-  end
-
-  def create_copy
-    clone
   end
 end
