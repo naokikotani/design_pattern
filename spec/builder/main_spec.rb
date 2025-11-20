@@ -11,11 +11,13 @@ RSpec.describe "Builder Pattern" do
       result = builder.result
 
       expect(result).to include("==============================")
-      expect(result).to include("『Greeting』")
-      expect(result).to include("■一般的なあいさつ")
-      expect(result).to include("・How are you?")
-      expect(result).to include("■時間帯に応じたあいさつ")
-      expect(result).to include("・Good morning.")
+      expect(result).to include("『旅行の持ち物リスト』")
+      expect(result).to include("■必需品")
+      expect(result).to include("・パスポート")
+      expect(result).to include("■衣類")
+      expect(result).to include("・着替え")
+      expect(result).to include("■洗面用具")
+      expect(result).to include("・歯ブラシ")
       expect(result).to include("==============================")
     end
   end
@@ -31,9 +33,10 @@ RSpec.describe "Builder Pattern" do
       expect(File.exist?(filename)).to be true
 
       html = File.read(filename)
-      expect(html).to include("<h1>Greeting</h1>")
-      expect(html).to include("<li>How are you?</li>")
-      expect(html).to include("<li>Good morning.</li>")
+      expect(html).to include("<h1>旅行の持ち物リスト</h1>")
+      expect(html).to include("<li>パスポート</li>")
+      expect(html).to include("<li>着替え</li>")
+      expect(html).to include("<li>歯ブラシ</li>")
 
       File.delete(filename) if File.exist?(filename)
     end
