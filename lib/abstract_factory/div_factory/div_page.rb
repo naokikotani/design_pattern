@@ -1,20 +1,12 @@
 class DivPage < Page
   def make_html
-    html = "<!DOCTYPE html>\n"
-    html += "<html><head><title>"
-    html += @title
-    html += "</title></head>\n"
-    html += "<body>\n"
-    html += "<h1>"
-    html += @title
-    html += "</h1>\n"
-    @content.each do |item|
-      html += item.make_html
-    end
-    html += "<hr><address>"
-    html += @author
-    html += "</address>\n"
-    html += "</body></html>\n"
-    html
+    <<~HTML
+      <!DOCTYPE html>
+      <html><head><title>#{@title}</title></head>
+      <body>
+      <h1>#{@title}</h1>
+      #{@content.map(&:make_html).join}<hr><address>#{@author}</address>
+      </body></html>
+    HTML
   end
 end
