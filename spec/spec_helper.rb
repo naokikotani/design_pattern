@@ -18,7 +18,7 @@ lib_path = File.expand_path('../lib', __dir__)
 all_files = Dir[File.join(lib_path, '**/*.rb')].sort
 
 # 基底クラスを先に読み込む
-base_files = all_files.select { |f| File.basename(f) =~ /^(iterable|iterator|product|factory)\.rb$/ }
+base_files = all_files.select { |f| File.basename(f) =~ /^(iterable|iterator|product|factory|item|link|tray|page|prototype)\.rb$/ }
 impl_files = all_files - base_files
 
 base_files.sort.each { |file| require file }
