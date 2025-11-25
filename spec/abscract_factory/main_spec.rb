@@ -49,3 +49,26 @@ RSpec.describe "Main functionality" do
     expect(html).to include("News 3 (Japan)")
   end
 end
+
+RSpec.describe "Factory#create_yahoo_page" do
+  let(:output_file) { "yahoo_test.html" }
+
+  after do
+    FileUtils.rm_f(output_file)
+  end
+
+  it "creates a page with Yahoo! link using DivFactory" do
+    factory = DivFactory.new
+    page = factory.create_yahoo_page
+
+    page.output(output_file)
+
+    expect(File).to exist(output_file)
+
+    html = File.read(output_file)
+    expect(html).to include("<title>Yahoo!</title>")
+    expect(html).to include("<address>Yahoo!</address>")
+    expect(html).to include('href="https://www.yahoo.com/"')
+    expect(html).to include(">Yahoo!</a>")
+  end
+end

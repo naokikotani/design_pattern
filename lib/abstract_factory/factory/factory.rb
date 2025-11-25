@@ -18,4 +18,11 @@ class Factory
   def create_page(title, author)
     raise NotImplementedError
   end
+
+  def create_yahoo_page
+    link = create_link("Yahoo!", "https://www.yahoo.com/")
+    page = create_page("Yahoo!", "Yahoo!")
+    page.add(link)
+    page
+  end
 end
