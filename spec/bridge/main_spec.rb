@@ -11,9 +11,9 @@ RSpec.describe 'Bridge Pattern Display' do
     d1.display
 
     expect(stdout.string).to eq <<~EOS
-      +--------------+
+      +-------------+
       |Hello, Japan.|
-      +--------------+
+      +-------------+
     EOS
   end
 
@@ -31,11 +31,12 @@ RSpec.describe 'Bridge Pattern Display' do
   it 'd3.display and d3.multiDisplay(5)' do
     d3 = CountDisplay.new(StringDisplayImpl.new("Hello, Universe."))
     d3.display
-    d3.multiDisplay(5)
+    d3.multi_display(5)
 
     expect(stdout.string).to eq <<~EOS
       +----------------+
       |Hello, Universe.|
+      +----------------+
       +----------------+
       |Hello, Universe.|
       |Hello, Universe.|
