@@ -26,9 +26,9 @@ RSpec.describe 'Strategy Pattern' do
         end
       end
 
-      expect(player1.game_count).to eq(100)
-      expect(player2.game_count).to eq(100)
-      expect(player1.win_count + player2.win_count + results.count(:even)).to eq(100)
+      expect(player1.gamecount).to eq(100)
+      expect(player2.gamecount).to eq(100)
+      expect(player1.wincount + player2.wincount + results.count(:even)).to eq(100)
     end
 
     it do
@@ -51,11 +51,11 @@ RSpec.describe 'Strategy Pattern' do
         end
       end
 
-      expect(player1.game_count).to eq(10000)
-      expect(player2.game_count).to eq(10000)
+      expect(player1.gamecount).to eq(10000)
+      expect(player2.gamecount).to eq(10000)
 
-      win_rate1 = player1.win_count.to_f / player1.game_count
-      win_rate2 = player2.win_count.to_f / player2.game_count
+      win_rate1 = player1.wincount.to_f / player1.gamecount
+      win_rate2 = player2.wincount.to_f / player2.gamecount
       expect(win_rate1).to be_between(0, 1)
       expect(win_rate2).to be_between(0, 1)
     end
