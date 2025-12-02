@@ -1,6 +1,5 @@
 require "stringio"
-require_relative "../file"
-require_relative "../directory"
+require 'rspec'
 
 RSpec.describe "Composite pattern Main" do
   it do
