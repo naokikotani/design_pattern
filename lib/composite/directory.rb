@@ -20,6 +20,7 @@ class Directory < Entry
   end
 
   def add(entry)
+    entry.parent = self
     @directory << entry
     self
   end

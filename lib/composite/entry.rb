@@ -1,6 +1,16 @@
 class Entry
+  attr_accessor :parent
+
   def get_name
     raise NotImplementedError
+  end
+
+  def get_full_path
+    if @parent
+      "#{@parent.get_full_path}/#{get_name}"
+    else
+      "/#{get_name}"
+    end
   end
 
   def get_size
