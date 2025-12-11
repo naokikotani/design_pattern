@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import { Directory } from '../src/Directory';
-import { File } from '../src/File';
-import { ListVisitor } from '../src/ListVisitor';
+import { Directory } from '../../lib/visitor/directory';
+import { File } from '../../lib/visitor/file';
+import { ListVisitor } from '../../lib/visitor/list-visitor';
 
 describe('Visitor Pattern: ListVisitor', () => {
   it('prints correct structure for root entries', () => {
