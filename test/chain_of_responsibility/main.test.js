@@ -1,10 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 
-import { NoSupport } from '../src/NoSupport';
-import { LimitSupport } from '../src/LimitSupport';
-import { SpecialSupport } from '../src/SpecialSupport';
-import { OddSupport } from '../src/OddSupport';
-import { Trouble } from '../src/Trouble';
+import { NoSupport } from '../../lib/chain_of_responsibility/no-support';
+import { LimitSupport } from '../../lib/chain_of_responsibility/limit-support';
+import { SpecialSupport } from '../../lib/chain_of_responsibility/special-support';
+import { OddSupport } from '../../lib/chain_of_responsibility/odd-support';
+import { Trouble } from '../../lib/chain_of_responsibility/trouble';
 
 describe('Chain of Responsibility', () => {
   it('resolves troubles in correct order', () => {
