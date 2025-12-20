@@ -69,7 +69,7 @@ describe('Mediator: LoginFrame', () => {
   });
 
   describe('Login選択時 - Username/Password両方入力後', () => {
-    it('OKボタンが有効になる', () => {
+    it('両方4文字以上でOKボタンが有効になる', () => {
       const frame = new LoginFrame('Test');
       frame.checkLogin.setState(true);
       frame.textUser.setText('user');
@@ -77,6 +77,36 @@ describe('Mediator: LoginFrame', () => {
       frame.colleagueChanged();
 
       expect(frame.buttonOk.isEnabled()).toBe(true);
+    });
+
+    it('Usernameが3文字以下ではOKボタンは無効', () => {
+      const frame = new LoginFrame('Test');
+      frame.checkLogin.setState(true);
+      frame.textUser.setText('usr');
+      frame.textPass.setText('pass');
+      frame.colleagueChanged();
+
+      expect(frame.buttonOk.isEnabled()).toBe(false);
+    });
+
+    it('Passwordが3文字以下ではOKボタンは無効', () => {
+      const frame = new LoginFrame('Test');
+      frame.checkLogin.setState(true);
+      frame.textUser.setText('user');
+      frame.textPass.setText('pas');
+      frame.colleagueChanged();
+
+      expect(frame.buttonOk.isEnabled()).toBe(false);
+    });
+
+    it('両方3文字以下ではOKボタンは無効', () => {
+      const frame = new LoginFrame('Test');
+      frame.checkLogin.setState(true);
+      frame.textUser.setText('usr');
+      frame.textPass.setText('pas');
+      frame.colleagueChanged();
+
+      expect(frame.buttonOk.isEnabled()).toBe(false);
     });
   });
 

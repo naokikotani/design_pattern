@@ -56,7 +56,7 @@ export class LoginFrame implements Mediator {
   private userpassChanged(): void {
     if (this.textUser.getText().length > 0) {
       this.textPass.setColleagueEnabled(true);
-      if (this.textPass.getText().length > 0) {
+      if (this.textUser.getText().length >= 4 && this.textPass.getText().length >= 4) {
         this.buttonOk.setColleagueEnabled(true);
       } else {
         this.buttonOk.setColleagueEnabled(false);
