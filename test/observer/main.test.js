@@ -1,7 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { RandomNumberGenerator } from '../../lib/observer/random-number-generator';
+import { IncrementalNumberGenerator } from '../../lib/observer/incremental-number-generator';
 import { DigitObserver } from '../../lib/observer/digit-observer';
 import { GraphObserver } from '../../lib/observer/graph-observer';
+import { FrameObserver } from '../../lib/observer/frame-observer';
 
 describe('Observer Pattern', () => {
   let logSpy;
@@ -148,6 +150,60 @@ describe('Observer Pattern', () => {
       const firstGraphIndex = calls.findIndex(c => c.startsWith('GraphObserver:'));
 
       expect(firstDigitIndex).toBeLessThan(firstGraphIndex);
+    });
+  });
+
+  describe('IncrementalNumberGenerator', () => {
+    it('開始値から終了値まで増分ごとに数値を生成する', () => {
+      const generator = new IncrementalNumberGenerator(10, 50, 5);
+      const observer = new DigitObserver();
+      generator.addObserver(observer);
+
+      generator.execute();
+
+      const calls = logSpy.mock.calls.map(call => call[0]);
+      const digitCalls = calls.filter(c => c.startsWith('DigitObserver:'));
+      const numbers = digitCalls.map(c => parseInt(c.replace('DigitObserver:', '')));
+
+      expect(numbers).toEqual([10, 15, 20, 25, 30, 35, 40, 45]);
+    });
+
+    it('終了値は含まない', () => {
+      const generator = new IncrementalNumberGenerator(0, 10, 2);
+      const observer = new DigitObserver();
+      generator.addObserver(observer);
+
+      generator.execute();
+
+      const calls = logSpy.mock.calls.map(call => call[0]);
+      const digitCalls = calls.filter(c => c.startsWith('DigitObserver:'));
+      const numbers = digitCalls.map(c => parseInt(c.replace('DigitObserver:', '')));
+
+      expect(numbers).toEqual([0, 2, 4, 6, 8]);
+      expect(numbers).not.toContain(10);
+    });
+
+    it('getNumberで現在の数値を取得できる', () => {
+      const generator = new IncrementalNumberGenerator(10, 50, 5);
+      generator.execute();
+
+      // 最後の数値は45（50未満で最大）
+      expect(generator.getNumber()).toBe(45);
+    });
+  });
+
+  describe('FrameObserver（問題17-2）', () => {
+    it('数値を枠で囲んで出力する', () => {
+      const generator = new IncrementalNumberGenerator(10, 20, 5);
+      const observer = new FrameObserver();
+      generator.addObserver(observer);
+
+      generator.execute();
+
+      const calls = logSpy.mock.calls.map(call => call[0]);
+      expect(calls).toContain('+------+');
+      expect(calls).toContain('|  10  |');
+      expect(calls).toContain('|  15  |');
     });
   });
 });
