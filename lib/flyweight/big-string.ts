@@ -8,11 +8,20 @@ export class BigString {
   private bigchars: BigChar[];
 
   // コンストラクタ
-  constructor(str: string) {
-    const factory = BigCharFactory.getInstance();
+  // shared: trueなら共有する（デフォルト）、falseなら共有しない
+  constructor(str: string, shared: boolean = true) {
     this.bigchars = [];
-    for (let i = 0; i < str.length; i++) {
-      this.bigchars[i] = factory.getBigChar(str.charAt(i));
+    if (shared) {
+      // 共有する場合: Factoryを使ってインスタンスを取得
+      const factory = BigCharFactory.getInstance();
+      for (let i = 0; i < str.length; i++) {
+        this.bigchars[i] = factory.getBigChar(str.charAt(i));
+      }
+    } else {
+      // 共有しない場合: 毎回新しいインスタンスを生成
+      for (let i = 0; i < str.length; i++) {
+        this.bigchars[i] = new BigChar(str.charAt(i));
+      }
     }
   }
 
